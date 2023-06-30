@@ -6,6 +6,7 @@ import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 
+// Declaration of child routes
 const routes: Routes = [
   {
     path: "by-capital",

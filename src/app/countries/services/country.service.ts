@@ -12,6 +12,7 @@ export class CountriesService {
 
   private apiUrl: string = "https://restcountries.com/v3.1";
 
+  // Load possible web storage information
   constructor(private http: HttpClient) {
     this.loadFromLocalStorage();
   }
@@ -23,10 +24,12 @@ export class CountriesService {
     byCapital: { value:  "", countries: [] },
   }
 
+  // Saves web storage information
   private saveToLocalStorage() {
     localStorage.setItem( 'cacheStorage', JSON.stringify( this.cacheStorage ));
   }
 
+  // Loads web storage information if there is information to load
   private loadFromLocalStorage() {
     if ( !localStorage.getItem('cacheStorage') ) return;
 
