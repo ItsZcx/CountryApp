@@ -4,6 +4,10 @@ This Angular web application allows users to search for countries using differen
 
 This web application was created as a learning project to explore various concepts and features of Angular and RxJs, including routes, lazy loading on routes, and the basics of single-page application (SPA) web pages, web browser local storage as well as debouncing with RxJs and some operators. It also covers other fundamental Angular topics such as inputs and outputs, services, importation of custom modules, modularization of an application, components, as well as the use of APIs to fetch data, among other things.
 
+**The web application should be up and running on:**
+<br>
+*https://itszcx.github.io/CountryApp/*
+
 ## Installation
 
 To initialize the project, run the following command to install the necessary packages:
