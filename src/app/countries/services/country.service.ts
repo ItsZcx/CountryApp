@@ -12,13 +12,25 @@ export class CountriesService {
 
   private apiUrl: string = "https://restcountries.com/v3.1";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadFromLocalStorage();
+  }
 
   // Object that works as a local storage to keep previous search
   public cacheStorage: CacheStorage = {
     byRegion:   { region: "", countries: [] },
     byCountry:  { value:  "", countries: [] },
     byCapital: { value:  "", countries: [] },
+  }
+
+  private saveToLocalStorage() {
+    localStorage.setItem( 'cacheStorage', JSON.stringify( this.cacheStorage ));
+  }
+
+  private loadFromLocalStorage() {
+    if ( !localStorage.getItem('cacheStorage') ) return;
+
+    this.cacheStorage = JSON.parse( localStorage.getItem('cacheStorage')! );
   }
 
   // Return countries, in case there is an error --> return a new observable empty "of([])"
@@ -41,36 +53,42 @@ export class CountriesService {
     );
   }
 
-  // Returns countries searched by capital and stores both the string and the countries to cacheStorage
+  // Returns countries searched by capital, stores both the string and the countries to cacheStorage
+  // and then to the web browser local storage
   searchCapital( capitalName: string ): Observable<Country[]> {
     const url: string = `${ this.apiUrl }/capital/${ capitalName }`;
 
     return this.returnCountryRequest(url)
     .pipe(
-      tap( funcCountries => this.cacheStorage.byCapital = { value: capitalName, countries: funcCountries } )
+      tap( funcCountries => this.cacheStorage.byCapital = { value: capitalName, countries: funcCountries } ),
       // If the var from the object has the same name as the function one you can do this  ⬇⬇⬇⬇
       //          tap( countries => this.cacheStorage.byCapital = { value: capitalName, countries } )
-    );
+      tap( () => this.saveToLocalStorage() ),
+      );
   }
 
-  // Returns countries searched by name and stores both the string and the countries to cacheStorage
+  // Returns countries searched by name, stores both the string and the countries to cacheStorage
+  // and then to the web browser local storage
   searchCountry( countryName: string ): Observable<Country[]> {
     const url: string = `${ this.apiUrl }/name/${ countryName }`;
 
     return this.returnCountryRequest(url)
     .pipe(
-      tap( funcCountries => this.cacheStorage.byCountry = { value: countryName, countries: funcCountries } )
-    );
+      tap( funcCountries => this.cacheStorage.byCountry = { value: countryName, countries: funcCountries } ),
+      tap( () => this.saveToLocalStorage() ),
+      );
   }
 
-  // Returns countries searched by region and stores both the string and the countries to cacheStorage
+  // Returns countries searched by region, stores both the string and the countries to cacheStorage
+  // and then to the web browser local storage
   searchRegion( regionName: Region ): Observable<Country[]> {
     const url: string = `${ this.apiUrl }/region/${ regionName }`;
 
     return this.returnCountryRequest(url)
     .pipe(
-      tap( funcCountries => this.cacheStorage.byRegion = { region: regionName, countries: funcCountries } )
-    );
+      tap( funcCountries => this.cacheStorage.byRegion = { region: regionName, countries: funcCountries } ),
+      tap( () => this.saveToLocalStorage() ),
+      );
   }
 
 }
