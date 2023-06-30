@@ -8,5 +8,6 @@ we will send the placeholder string in the parent and recive it as input -->
   class="form-control"
   (keyup)="onKeyPress(txtInput.value)"
   [placeholder]="placeholder"
+  [value]="storedValue"
   #txtInput
 >

@@ -16,9 +16,12 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   @Input()
   public placeholder: string = "";
 
+  @Input()
+  public storedValue: string = "";
+
   // Previous way of searching in searchbox without debounce
-  @Output()
-  public onValue    = new EventEmitter<string>();
+  // @Output()
+  // public onValue    = new EventEmitter<string>();
 
   @Output()
   public onDebounce = new EventEmitter<string>();
@@ -45,9 +48,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   // Previous way of searching in searchbox without debounce x2
-  emitValue(value: string): void {
-    this.onValue.emit(value);
-  }
+  // emitValue(value: string): void {
+  //   this.onValue.emit(value);
+  // }
 
   onKeyPress(value: string): void {
     this.debouncer.next(value)

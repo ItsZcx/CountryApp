@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../../services/country.service';
+import { Country } from '../../interfaces/country.interface';
 import { switchMap } from 'rxjs';
-import { Country } from '../../interfaces/country';
 
 @Component({
   selector: 'country-page',
