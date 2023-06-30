@@ -14,7 +14,9 @@
 
 <div class="row">
   <div class="col">
-    <!-- Table with the information -->
+      <!-- Bottom rigth loading animation -->
+      <shared-loader *ngIf="isLoading === true"></shared-loader>
+      <!-- Table with the information -->
     <countries-table [countries]="countriesList" ></countries-table>
   </div>
 </div>
