@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "node_modules": true,
+        ".angular/cache/16.1.0": true,
+        ".angular/cache": true,
+        ".angular": true
+    },
+    "hide-files.files": [
+        "node_modules",
+        ".angular/cache/16.1.0",
+        ".angular/cache",
+        ".angular",
+        ".vscode"
+    ]
+}

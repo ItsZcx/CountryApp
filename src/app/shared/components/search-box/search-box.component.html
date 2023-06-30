@@ -1,0 +1,9 @@
+<!--It's going to be a constantly used component.
+As we migth want to put differents placeholders,
+we will send the placeholder string in the parent and recive it as input -->
+<input type="text"
+class="form-control"
+[placeholder]="placeholder"
+(keyup.enter)="emitValue( txtInput.value )"
+#txtInput
+>
